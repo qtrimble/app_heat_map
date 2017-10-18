@@ -22,89 +22,63 @@
   <style>
     body { margin:0; padding:0; }
     #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+	#query {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 1000;
+		background: white;
+		padding: 1em;
+	}
+	#query select {
+		font-size: 16px;
+	}
   </style>
 </head>
 <body>
 
-<style>
-  #query {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-    background: white;
-    padding: 1em;
-  }
-
-  #query select {
-    font-size: 16px;
-  }
-</style>
-
 <div id="map"></div>
 <div id="query" class="leaflet-bar">
-<label>
-  Bus Direction
-  <select id="direction">
-    <!-- make sure to encase string values in single quotes for valid sql -->
-    <option value='1=1'>Any</option>
-    <option value="direction='North'">North</option>
-    <option value="direction='South'">South</option>
-    <option value="direction='East'">East</option>
-    <option value="direction='West'">West</option>
-  </select>
-</label>
+	<label>
+	  Gender
+	  <select id="gender">
+		<!-- make sure to encase string values in single quotes for valid sql -->
+		<option value='1=1'>Any</option>
+		<option value="gender='M'">Male</option>
+		<option value="gender='F'">Female</option>
+	  </select>
+	</label>
+	<label>
+	  Race
+	  <select id="gender">
+		<!-- make sure to encase string values in single quotes for valid sql -->
+		<option value='1=1'>Any</option>
+		<option value="gender='B'">Black</option>
+		<option value="gender='W'">White</option>
+		<option value="gender='H'">Hispanic</option>
+	  </select>
+	</label>
 </div>
 
 <script>
-  var map = L.map('map').setView([45.526, -122.667], 15);
+	var map = L.map('map').setView([36.022203, -78.903182], 12);
 
-  var icons = {
-    north: L.icon({
-      iconUrl: '//esri.github.io/esri-leaflet/img/bus-stop-north.png',
-      iconRetinaUrl: '//esri.github.io/esri-leaflet/img/bus-stop-north@2x.png',
-      iconSize: [27, 31],
-      iconAnchor: [13.5, 17.5],
-      popupAnchor: [0, -11]
-    }),
-    south: L.icon({
-      iconUrl: '//esri.github.io/esri-leaflet/img/bus-stop-south.png',
-      iconRetinaUrl: '//esri.github.io/esri-leaflet/img/bus-stop-south@2x.png',
-      iconSize: [27, 31],
-      iconAnchor: [13.5, 13.5],
-      popupAnchor: [0, -11]
-    }),
-    east: L.icon({
-      iconUrl: '//esri.github.io/esri-leaflet/img/bus-stop-east.png',
-      iconRetinaUrl: '//esri.github.io/esri-leaflet/img/bus-stop-east@2x.png',
-      iconSize: [31, 27],
-      iconAnchor: [13.5, 17.5],
-      popupAnchor: [0, -11]
-    }),
-    west: L.icon({
-      iconUrl: '//esri.github.io/esri-leaflet/img/bus-stop-west.png',
-      iconRetinaUrl: '//esri.github.io/esri-leaflet/img/bus-stop-west@2x.png',
-      iconSize: [31, 27],
-      iconAnchor: [17.5, 13.5],
-      popupAnchor: [0, -11]
-    })
-  };
+	L.esri.basemapLayer('Streets').addTo(map);
+  
+	var stops = L.esri.featureLayer({
+	url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
+	pointToLayer: function (geojson, latlng) {
+	  return L.marker(latlng);
+	}
+	}).addTo(map);
 
-  L.esri.basemapLayer('Streets').addTo(map);
-  var stops = L.esri.featureLayer({
-    url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Trimet_Transit_Stops/FeatureServer/0',
-    pointToLayer: function (geojson, latlng) {
-      return L.marker(latlng, {
-        icon: icons[geojson.properties.direction.toLowerCase()]
-      });
-    }
-  }).addTo(map);
-
-  var direction = document.getElementById('direction');
-
-  direction.addEventListener('change', function(){
-    stops.setWhere(direction.value);
-  });
+	var gender = document.getElementById('gender');
+	
+	console.log(gender.value);
+	
+	gender.addEventListener('change', function(){
+		stops.setWhere(gender.value);
+	});
 </script>
 
 </body>
