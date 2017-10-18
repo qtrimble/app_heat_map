@@ -68,9 +68,9 @@
   
 	var filterLayer = L.esri.featureLayer({
 	url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
-	pointToLayer: function (geojson, latlng) {
-	  return L.marker(latlng);
-	}
+	//pointToLayer: function (geojson, latlng) {
+	//  return L.marker(latlng);
+	//}
 	}).addTo(map);
 	
 	// new constructor syntax at 2.0.0
