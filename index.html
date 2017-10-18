@@ -72,12 +72,11 @@
 	}
 	}).addTo(map);
 
-	var gender = document.getElementById('gender');
-	
-	console.log(gender.value);
+	var gender = document.getElementById('gender');	
 	
 	gender.addEventListener('change', function(){
 		stops.setWhere(gender.value);
+		console.log(gender.value);
 	});
 </script>
 
