@@ -47,15 +47,25 @@ in production you'd be better off hosting this library yourself -->
 
 <div id="map"></div>
 <div id="query" class="leaflet-bar">
-<label>
-  Gender
-  <select id="gender">
-    <!-- make sure to encase string values in single quotes for valid sql -->
-    <option value='1=1'>Any</option>
-    <option value="gender='M'">Male</option>
-    <option value="gender='F'">Female</option>
-  </select>
-</label>
+	<label>
+	  Gender
+	  <select id="gender">
+		<!-- make sure to encase string values in single quotes for valid sql -->
+		<option value='1=1'>Any</option>
+		<option value="gender='M'">Male</option>
+		<option value="gender='F'">Female</option>
+	  </select>
+	</label>
+	<label>
+	  Race
+	  <select id="gender">
+		<!-- make sure to encase string values in single quotes for valid sql -->
+		<option value='1=1'>Any</option>
+		<option value="gender='B'">Black</option>
+		<option value="gender='W'">White</option>
+		<option value="gender='H'">Hispanic</option>
+	  </select>
+	</label>
 </div>
 
 <script>
