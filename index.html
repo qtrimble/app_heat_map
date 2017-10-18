@@ -81,6 +81,8 @@ in production you'd be better off hosting this library yourself -->
   
   var gender = document.getElementById('gender');
 
+  console.log(gender.value);
+  
   gender.addEventListener('change', function(){
     stops.setWhere(gender.value);
   });
