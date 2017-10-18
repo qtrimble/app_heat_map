@@ -66,18 +66,24 @@
 	//L.esri.basemapLayer('Streets').addTo(map);
 	L.esri.basemapLayer('Gray').addTo(map);
   
-	var stops = L.esri.featureLayer({
-	url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
-	pointToLayer: function (geojson, latlng) {
-	  return L.marker(latlng);
-	}
+	//var stops = L.esri.featureLayer({
+	//url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
+	//pointToLayer: function (geojson, latlng) {
+	//  return L.marker(latlng);
+	//}
+	//}).addTo(map);
+	
+	// new constructor syntax at 2.0.0
+	var filterLayer = L.esri.Heat.featureLayer({
+		url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
+		radius: 10
 	}).addTo(map);
 
 	var gender = document.getElementById('gender');	
 	
 	gender.addEventListener('change', function(){
-		stops.setWhere(gender.value);
-		console.log(gender.value);
+		filterLayer.setWhere(gender.value);
+		//console.log(gender.value);
 	});
 </script>
 
