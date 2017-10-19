@@ -93,11 +93,16 @@ in production you'd be better off hosting this library yourself -->
 	var query = document.getElementById('query');	
 	var gender = document.getElementById('gender');
 	var race = document.getElementById('race');
+	var age = document.getElementById('age');
 	
-	query.addEventListener('click', function(){
-		console.log(gender.value);
-		console.log(age.value);
-	});	
+	//query.addEventListener('click', function(){
+	//	console.log(gender.value);
+	//	console.log(age.value);
+	//});	
+	
+	age.addEventListener('change', function(){
+		filterLayer.setWhere(gender.value);
+	});
 </script>
 
 </body>
