@@ -84,11 +84,18 @@ in production you'd be better off hosting this library yourself -->
 
 	L.esri.basemapLayer('Gray').addTo(map);
 
-	// new constructor syntax at 2.0.0
-	L.esri.Heat.featureLayer({
-		url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/arcgis/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
-		radius: 10
+	var filterLayer = L.esri.featureLayer({
+	url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
+	//pointToLayer: function (geojson, latlng) {
+	//  return L.marker(latlng);
+	//}
 	}).addTo(map);
+	
+	// new constructor syntax at 2.0.0
+	//var filterLayer = L.esri.Heat.featureLayer({
+	//	url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/arcgis/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
+	//	radius: 10
+	//}).addTo(map);
   
 	var query = document.getElementById('query');	
 	var gender = document.getElementById('gender');
