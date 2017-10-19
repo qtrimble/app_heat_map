@@ -52,18 +52,28 @@ in production you'd be better off hosting this library yourself -->
 	  <select id="gender">
 		<!-- make sure to encase string values in single quotes for valid sql -->
 		<option value='1=1'>Any</option>
-		<option value="gender='M'">Male</option>
-		<option value="gender='F'">Female</option>
+		<option value="sex='M'">Male</option>
+		<option value="sex='F'">Female</option>
 	  </select>
 	</label>
-	<label>
+	<!-- <label>
 	  Race
 	  <select id="race">
-		<!-- make sure to encase string values in single quotes for valid sql -->
 		<option value='1=1'>Any</option>
 		<option value="race='B'">Black</option>
 		<option value="race='W'">White</option>
 		<option value="race='H'">Hispanic</option>
+	  </select>
+	</label> -->
+	<label>
+	  Age
+	  <select id="age">
+		<!-- make sure to encase string values in single quotes for valid sql -->
+		<option value='1=1'>Any</option>
+		<option value="age > 0 AND age <= 25">0-25</option>
+		<option value="age >= 26 AND age <= 50">26-50</option>
+		<option value="age >= 50 AND age <= 75">50-75</option>
+		<option value="age >= 76">> 76</option>
 	  </select>
 	</label>
 	<input id="query" type="submit" value="Submit">
@@ -86,7 +96,7 @@ in production you'd be better off hosting this library yourself -->
 	
 	query.addEventListener('click', function(){
 		console.log(gender.value);
-		console.log(race.value);
+		console.log(age.value);
 	});	
 </script>
 
