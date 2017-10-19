@@ -86,4 +86,92 @@
 </script>
 
 </body>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Querying features</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+	<!-- Load Leaflet from CDN -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+	integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+	crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+	integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+	crossorigin=""></script>
+
+
+	<!-- Load Esri Leaflet from CDN -->
+	<script src="https://unpkg.com/esri-leaflet@2.1.1/dist/esri-leaflet.js"
+	integrity="sha512-ECQqaYZke9cSdqlFG08zSkudgrdF6I1d8ViSa7I3VIszJyVqw4ng1G8sehEXlumdMnFYfzY0tMgdQa4WCs9IUw=="
+	crossorigin=""></script>
+
+	<style>
+	body { margin:0; padding:0; }
+	#map { position: absolute; top:0; bottom:0; right:0; left:0; }
+	#query {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 1000;
+		background: white;
+		padding: 1em;
+	}
+	#query select {
+		font-size: 16px;
+	}
+	</style>
+	
+</head>
+<body>
+
+<div id="map"></div>
+<div id="query-bar" class="leaflet-bar">
+	<label>
+	  Gender
+	  <select id="gender">
+		<!-- make sure to encase string values in single quotes for valid sql -->
+		<option value='1=1'>Any</option>
+		<option value="sex='M'">Male</option>
+		<option value="sex='F'">Female</option>
+	  </select>
+	</label>
+	<label>
+	  Race
+	  <select id="race">
+		<!-- make sure to encase string values in single quotes for valid sql -->
+		<option value='1=1'>Any</option>
+		<option value="race='B'">Black</option>
+		<option value="race='W'">White</option>
+		<option value="race='H'">Hispanic</option>
+	  </select>
+	</label>
+	<label>
+	  Submit
+	  <input id="query" type="submit" value="Submit">
+	</label>
+</div>
+
+<script>
+	var map = L.map('map').setView([36.022203, -78.903182], 12);
+
+	L.esri.basemapLayer('Gray').addTo(map);
+
+	// new constructor syntax at 2.0.0
+	var filterLayer = L.esri.Heat.featureLayer({
+		url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
+		radius: 10
+	}).addTo(map);
+
+	var query = document.getElementById('query');	
+	var gender = document.getElementById('gender');
+	var race = document.getElementById('race');
+	
+	query.onclick('change', function(){
+		console.log(gender.value);
+		console.log(race.value);
+	});	
+</script>
+
+</body>
 </html>
