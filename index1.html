@@ -113,10 +113,18 @@ in production you'd be better off hosting this library yourself -->
 	
 	query.addEventListener('click', function(){
 		map.closePopup(); // close all open popups
-		filterLayer.setWhere(age.value);
-		console.log("age: " + age.value);
+		filterLayer.setWhere(age.value, function() {
+			// callback function
+			alert("query performed);			
+		});
+		
+		//console.log("age: " + age.value);
 		//console.log("sex: " + gender.value);
 	});
+	
+	function alert() {
+		
+	}
 </script>
 
 </body>
