@@ -91,6 +91,10 @@ in production you'd be better off hosting this library yourself -->
 	//}
 	}).addTo(map);
 	
+	filterLayer.bindPopup(function (layer) {
+		return L.Util.template('<p><b>{patient id}</b><br>{age}<br></p>', layer.feature.properties);
+	});
+	
 	// new constructor syntax at 2.0.0
 	//var filterLayer = L.esri.Heat.featureLayer({
 	//	url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/arcgis/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
