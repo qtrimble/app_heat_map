@@ -108,9 +108,9 @@ in production you'd be better off hosting this library yourself -->
 	//});	
 	
 	query.addEventListener('click', function(){
-		//filterLayer.setWhere(gender.value);
-		console.log("age = " + age.value);
-		console.log("sex = " + gender.value);
+		filterLayer.setWhere(age.value);
+		console.log("age: " + age.value);
+		//console.log("sex: " + gender.value);
 	});
 </script>
 
