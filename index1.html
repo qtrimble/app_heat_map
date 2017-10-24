@@ -112,10 +112,11 @@ in production you'd be better off hosting this library yourself -->
 	//});	
 	
 	//var query = gender.value + " AND " + age.value;
-	var query = gender.value;
+	//var query = gender.value;
 	
 	querySubmit.addEventListener('click', function(){
 		map.closePopup(); // close all open popups
+		var query = gender.value + " AND " + age.value;
 		//filterLayer.setWhere(age.value, function() {
 		//	// callback function
 		//	alert("query performed");			
