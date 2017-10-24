@@ -84,20 +84,20 @@ in production you'd be better off hosting this library yourself -->
 
 	L.esri.basemapLayer('Gray').addTo(map);
 
-	//var filterLayer = L.esri.featureLayer({
-	//url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
-	//pointToLayer: function (geojson, latlng) {
-	//  return L.marker(latlng);
-	//}
-	//}).addTo(map);
+	var pointLayer = L.esri.featureLayer({
+		url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/ArcGIS/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
+		//pointToLayer: function (geojson, latlng) {
+		//  return L.marker(latlng);
+		//}
+	).addTo(map);
 	
 	// new constructor syntax at 2.0.0
-	var filterLayer = L.esri.Heat.featureLayer({
+	var heatLayer = L.esri.Heat.featureLayer({
 		url: 'https://services2.arcgis.com/G5vR3cOjh6g2Ed8E/arcgis/rest/services/TransitionsLC_geocoding_result/FeatureServer/0',
-		radius: 20
+		radius: 16
 	}).addTo(map);
 	
-	filterLayer.bindPopup(function (layer) {
+	pointLayer.bindPopup(function (layer) {
 		return L.Util.template('<p><b>Patient Identifier: {Patient_ID}</b><br>Age: {Age}<br>Gender: {Sex}</p>', layer.feature.properties);
 	});
 	
@@ -109,12 +109,16 @@ in production you'd be better off hosting this library yourself -->
 	querySubmit.addEventListener('click', function(){
 		map.closePopup(); // close all open popups
 		var query = gender.value + " AND " + age.value;
-		filterLayer.setWhere(query, function() {
+		pointLayer.setWhere(query, function() {
 			// callback function
 			querySubmit.getWhere
 			alert(querySubmit.getWhere);			
 		});
-		//query = "";
+		heatLayer.setWhere(query, function() {
+			// callback function
+			querySubmit.getWhere
+			alert(querySubmit.getWhere);			
+		});
 	});
 	
 </script>
