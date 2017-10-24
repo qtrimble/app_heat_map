@@ -92,7 +92,7 @@ in production you'd be better off hosting this library yourself -->
 	}).addTo(map);
 	
 	filterLayer.bindPopup(function (layer) {
-		return L.Util.template('<p><b>Patient Identifier: {Patient_ID}</b><br>Age: {Age}<br></p>', layer.feature.properties);
+		return L.Util.template('<p><b>Patient Identifier: {Patient_ID}</b><br>Age: {Age}<br><br>Gender: {Sex}<br></p>', layer.feature.properties);
 	});
 	
 	// new constructor syntax at 2.0.0
@@ -101,7 +101,7 @@ in production you'd be better off hosting this library yourself -->
 	//	radius: 10
 	//}).addTo(map);
   
-	var query = document.getElementById('query');	
+	var querySubmit = document.getElementById('query');	
 	var gender = document.getElementById('gender');
 	var race = document.getElementById('race');
 	var age = document.getElementById('age');
@@ -111,9 +111,16 @@ in production you'd be better off hosting this library yourself -->
 	//	console.log(age.value);
 	//});	
 	
-	query.addEventListener('click', function(){
+	var query = gender.value + " AND " + age.value;
+	
+	querySubmit.addEventListener('click', function(){
 		map.closePopup(); // close all open popups
-		filterLayer.setWhere(age.value, function() {
+		//filterLayer.setWhere(age.value, function() {
+		//	// callback function
+		//	alert("query performed");			
+		//});
+		console.log(query);
+		filterLayer.setWhere(query, function() {
 			// callback function
 			alert("query performed");			
 		});
