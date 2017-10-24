@@ -110,12 +110,8 @@ in production you'd be better off hosting this library yourself -->
 		map.closePopup(); // close all open popups
 		var query = gender.value + " AND " + age.value;
 		pointLayer.setWhere(query);
-		heatLayer.setWhere(query, function() {
-			// callback function
-			querySubmit.getWhere
-		});
+		heatLayer.setWhere(query);
 	});
-	alert(pointLayer.getWhere);
 	
 </script>
 
