@@ -92,7 +92,7 @@ in production you'd be better off hosting this library yourself -->
 	}).addTo(map);
 	
 	filterLayer.bindPopup(function (layer) {
-		return L.Util.template('<p><b>Patient Identifier: {Patient_ID}</b><br>Age: {Age}<br><br>Gender: {Sex}<br></p>', layer.feature.properties);
+		return L.Util.template('<p><b>Patient Identifier: {Patient_ID}</b><br>Age: {Age}<br>Gender: {Sex}</p>', layer.feature.properties);
 	});
 	
 	// new constructor syntax at 2.0.0
@@ -106,29 +106,14 @@ in production you'd be better off hosting this library yourself -->
 	//var race = document.getElementById('race');
 	var age = document.getElementById('age');
 	
-	//query.addEventListener('click', function(){
-	//	console.log(gender.value);
-	//	console.log(age.value);
-	//});	
-	
-	//var query = gender.value + " AND " + age.value;
-	//var query = gender.value;
-	
 	querySubmit.addEventListener('click', function(){
 		map.closePopup(); // close all open popups
 		var query = gender.value + " AND " + age.value;
-		//filterLayer.setWhere(age.value, function() {
-		//	// callback function
-		//	alert("query performed");			
-		//});
-		//console.log(gender.value + " AND " + age.value);
 		filterLayer.setWhere(query, function() {
 			// callback function
 			alert("query performed");			
 		});
-		
-		//console.log("age: " + age.value);
-		//console.log("sex: " + gender.value);
+
 		query = "";
 	});
 	
