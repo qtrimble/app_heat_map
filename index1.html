@@ -109,15 +109,11 @@ in production you'd be better off hosting this library yourself -->
 	querySubmit.addEventListener('click', function(){
 		map.closePopup(); // close all open popups
 		var query = gender.value + " AND " + age.value;
-		pointLayer.setWhere(query, function() {
-			// callback function
-			querySubmit.getWhere
-			alert(querySubmit.getWhere);			
-		});
+		pointLayer.setWhere(query);
 		heatLayer.setWhere(query, function() {
 			// callback function
 			querySubmit.getWhere
-			alert(querySubmit.getWhere);			
+			alert(pointLayer.getWhere);			
 		});
 	});
 	
