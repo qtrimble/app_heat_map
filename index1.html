@@ -121,11 +121,11 @@ in production you'd be better off hosting this library yourself -->
 		//	// callback function
 		//	alert("query performed");			
 		//});
-		console.log(gender.value + " AND " + age.value);
-		//filterLayer.setWhere(query, function() {
+		//console.log(gender.value + " AND " + age.value);
+		filterLayer.setWhere(query, function() {
 			// callback function
-		//	alert("query performed");			
-		//});
+			alert("query performed");			
+		});
 		
 		//console.log("age: " + age.value);
 		//console.log("sex: " + gender.value);
